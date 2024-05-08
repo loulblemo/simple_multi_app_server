@@ -2,3 +2,5 @@
 A simple example of combining nginx, gunicorn and flask using docker-compose
 
 TODO: Add a note on the importance of slashes (see also https://dev.to/danielkun/nginx-everything-about-proxypass-2ona)
+
+TODO: Add some slightly more complicated endpoint behaviour for testing
