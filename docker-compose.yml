@@ -4,17 +4,23 @@ services:
             context: app1
         ports:
             - "5000"
+        networks:
+            - "network1"
     app2:
         build:
             context: app2
         ports:
             - "5000"
+        networks:
+            - "network1"
 
     main_app:
         build:
             context: main_app
         ports:
             - "5000"
+        networks:
+            - "network1"
 
     nginx:
         image: nginx:latest
@@ -24,3 +30,8 @@ services:
             - app1
         ports:
             - "80:80"
+        networks:
+            - "network1"
+
+networks:
+    network1:
