@@ -4,11 +4,11 @@
 A simple example of combining nginx, gunicorn and flask using docker-compose to serve multiple flask apps.
 
 Suppose you have multiple self-contained flask apps that can run independently and you would like to put them all under the same domain, but using different suffixes for their endpoints. 
-For instance if you have app1 and app2, both with a /compute endpoint, you would like to serve app1/compute under yourdomain/app1/compute and app2 under yourdomain/app2/compute.
+For instance if you have app1 and app2, both with a `/compute` endpoint, you would like to serve app1/compute under `yourdomain/app1/compute` and app2 under `yourdomain/app2/compute`.
 This repo shows how you can do that using gunicorn, nginx and docker-compose.
 
 This repo can be tested locally running the launch.sh script. Since it uses docker-compose all you need to have is a working version of docker.
-When you test this repo locally, it will run everything under localhost, so the two test apps will be running under localhost/app1 and localhost/app2
+When you test this repo locally, it will run everything under localhost, so the two test apps will be running under `localhost/app1` and `localhost/app2`
 
 ## Repo explanation
 
@@ -17,8 +17,8 @@ main_app is supposed to map to the main index of your domain, and will point to 
 app1 and app2 will be completely self-contain and serve under yourdomain/app1 and yourdomain/app2. 
 
 The main tricks to get this working are:
-1. The apps use always url_for() to point to a particular endpoint. This ensures they will reach the correct endpoint whatever prefix is used.
-2. We're using the global variable SCRIPT_NAME when launching the unicorn server, this is really what makes it possible to have an app running under a /prefix
+1. The apps use always `url_for()` to point to a particular endpoint. This ensures they will reach the correct endpoint whatever prefix is used.
+2. We're using the global variable SCRIPT_NAME when launching the unicorn server, this is really what makes it possible to have an app running under a `/prefix`
 
 This code will work however complex the endpoints are in your apps, if they are self-contained (e.g. you can run the flask application independently) they will map to the same prefix.
 
@@ -30,17 +30,17 @@ cd app1
 
 and run 
 
-app.py
+`app.py`
 
 You will see the app is not serving under a prefix and you can reach both / and /compute
 
 then close the flask server and run 
 
-SCRIPT_NAME=/app1 gunicorn --bind 0.0.0.0:5000 wsgi:app
+`SCRIPT_NAME=/app1 gunicorn --bind 0.0.0.0:5000 wsgi:app`
 
-Now everything will run under the prefix /app1, so the index of the app is reachable at localhost/app1 and the /compute endpoint is reachable under the app1/compute endpoint
+Now everything will run under the prefix `/app1`, so the index of the app is reachable at `localhost/app1` and the `/compute` endpoint is reachable under the `app1/compute` endpoint
 
 Finally, with docker-compose and nginx we demonstrate how app1 and app2 can both work under their own prefixes, and we add a simple load-balancer which will be able to forward requests to multiple instances of the same services, you can test that using 
 
-launch.sh
+`launch.sh`
 
