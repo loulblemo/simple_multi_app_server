@@ -32,7 +32,7 @@ and run
 
 `app.py`
 
-You will see the app is not serving under a prefix and you can reach both / and /compute
+You will see the app is not serving under `localhost:5000` a prefix and you can reach both `localhost:5000/` and `localhost:5000/compute`
 
 then close the flask server and run 
 
