@@ -40,7 +40,16 @@ then close the flask server and run
 
 Now everything will run under the prefix `/app1`, so the index of the app is reachable at `localhost:5000/app1` and the `/compute` endpoint is reachable at `localhost:5000/app1/compute`
 
-Finally, with docker-compose and nginx we demonstrate how app1 and app2 can both work under their own prefixes, and we add a simple load-balancer which will be able to forward requests to multiple instances of the same services, you can test that using 
+Finally, with docker-compose and nginx we demonstrate how app1 and app2 can both work under their own prefixes, and we add a simple load-balancer which will be able to forward requests to multiple instances of the same services. Also, we map everything under port 80 which is the default for http.
+
+You can test that calling:
 
 `launch.sh`
+
+Now you can reach 
+* app1 at `localhost/app1`
+* its compute function at `localhost/app1/compute`
+* app2 at `localhost/app1`
+* the `/compute` endpoint for app2 at `localhost/app2/compute`
+* and finally main_app which is just the entry point at `localhost` 
 
