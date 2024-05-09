@@ -4,7 +4,7 @@
 A simple example of combining nginx, gunicorn and flask using docker-compose to serve multiple flask apps.
 
 Suppose you have multiple self-contained flask apps that can run independently and you would like to put them all under the same domain, but using different suffixes for their endpoints. 
-For instance if you have app1 and app2, both with a `/compute` endpoint, you would like to serve app1/compute under `yourdomain/app1/compute` and app2 under `yourdomain/app2/compute`.
+For instance if you have app1 and app2, both with a `/compute` endpoint, you would like to serve the `/compute` endpoint from app1 under `yourdomain/app1/compute` and the `/compute` endpoint of app2 under `yourdomain/app2/compute`.
 This repo shows how you can do that using gunicorn, nginx and docker-compose.
 
 This repo can be tested locally running the launch.sh script. Since it uses docker-compose all you need to have is a working version of docker.
