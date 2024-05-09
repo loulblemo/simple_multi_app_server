@@ -23,3 +23,24 @@ The main tricks to get this working are:
 This code will work however complex the endpoints are in your apps, if they are self-contained (e.g. you can run the flask application independently) they will map to the same prefix.
 
 To understand how this code works I would recommend to test one of the apps independently first as a flask server and then using gunicorn.
+
+For instance you can: 
+
+cd app1
+
+and run 
+
+app.py
+
+You will see the app is not serving under a prefix and you can reach both / and /compute
+
+then close the flask server and run 
+
+SCRIPT_NAME=/app1 gunicorn --bind 0.0.0.0:5000 wsgi:app
+
+Now everything will run under the prefix /app1, so the index of the app is reachable at localhost/app1 and the /compute endpoint is reachable under the app1/compute endpoint
+
+Finally, with docker-compose and nginx we demonstrate how app1 and app2 can both work under their own prefixes, and we add a simple load-balancer which will be able to forward requests to multiple instances of the same services, you can test that using 
+
+launch.sh
+
