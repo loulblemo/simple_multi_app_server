@@ -26,7 +26,7 @@ To understand how this code works I would recommend to test one of the apps inde
 
 For instance you can: 
 
-cd app1
+`cd app1`
 
 and run 
 
